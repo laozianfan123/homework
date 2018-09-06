@@ -1,0 +1,23 @@
+<!--pages/login.wxml-->
+
+  <form  bindsubmit="makeSrue" wx:if='{{filmShow}}' style='height:100%;width:100%;position:fixed;background:rgba(96,96,96,0.5);z-index:1200' catchtouchmove='scl'>
+       <view  style='height:400rpx;width:100%;background:#99FFFF;position:fixed;top:50%;margin-top:-200rpx'>
+         <view class='cNum'>请登录</view>
+      <input name='user' type='text' style='background:#fff;width:500rpx;margin-left:-250rpx;height:70rpx;position:fixed;left:50%;top:42%;margin-top:-35rpx' confirm-hold="true"  placeholder='请输入账号'></input>
+       <input name='pas' type='password' style='background:#fff;width:500rpx;margin-left:-250rpx;height:70rpx;position:fixed;left:50%;top:50%;margin-top:-35rpx' confirm-hold="true"  placeholder='请输入绑定码' ></input>
+        <view class='cBtn'>
+        <button formType="submit">确定</button>
+        <button formType="reset">取消</button>
+        </view>
+       </view>
+      </form>
+<view class='button'>
+  <navigator url='/pages/check/check' hover-class='none'>
+    <view>复验</view>
+  </navigator>
+  <navigator url='/pages/index/index' hover-class='none'>
+    <view>拣货</view>
+  </navigator>
+</view>
+
+<button wx:if="{{canIUse}}" class='userInfo' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button> 

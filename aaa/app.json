@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/pick/pick",
+    "pages/check/check"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "拣货",
+    "navigationBarTextStyle": "black"
+  }
+}

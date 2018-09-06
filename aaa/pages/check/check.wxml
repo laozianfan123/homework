@@ -1,0 +1,70 @@
+<view style='height: 100%'>
+  <view style='height: 80rpx;'>
+    <view class='orderFilter'>
+      <block wx:for='{{filterList}}' wx:key='{{index}}'>
+        <view data-index='{{index}}' class='item_1' catchtap='changeFilter'>
+          <text class='{{item.checked?"name active":"name"}}'>{{item.name}}<text class='number' wx:if="{{num > 0 && item.name == '全部'}}">{{num}}</text></text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <scroll-view class='orderList'>
+    <block wx:for='{{orderList}}' wx:key='{{index}}'>
+      <view class='item'>
+        <view class='tt'>
+          <view>#
+            <text style='font-weight: 700;margin-right: 15rpx;font-size: 40rpx;'>{{index+1}}</text>单号：{{item.channel_sheetno}}</view>
+          <view class='logo'></view>
+        </view>
+        <view class='ctn'>
+          <!-- <view class='buyerInfo'>
+            <view>
+              <text>{{item.buyer.nick}}  {{item.buyer.tel}}</text>
+            </view>
+            <view>{{item.buyer.address}}</view>
+          </view> -->
+          <view class='goodsInfo'>
+            <view class='count'>
+              <view class='total'>{{item.detail.length}}件商品</view>
+              <view class='goodsList'>
+                <block wx:for='{{item.detail}}' wx:for-item="goodsItem" wx:key='{{index}}'>
+                  <view class='goodsItem'>
+                    <view class='goodsName'>{{goodsItem.item_name}}</view>
+                    <view class='goodsCount'>x{{goodsItem.sale_qty}}</view>
+                    <view class='goodsTotalPrice'>￥{{goodsItem.transaction_value}}</view>
+                  </view>
+                </block>
+              </view>
+              <!-- <view class='otherPay'>
+                <view class='text'>其他</view>
+                <view class='ohterList'>
+                  <view class='lt'>配送费</view>
+                  <view class='rt'>￥{{item.logistics_value}}</view>
+                </view>
+              </view> -->
+            </view>
+          </view>
+          <!-- <view class='payInfo'>
+            <view class='payItem'>
+              <text class='lt'>顾客支付</text>
+              <text class='rt'>已支付 ￥{{item.total_item_value}}</text>
+            </view>
+            <view class='payItem'>
+              <text class='lt'>本单预计收入</text>
+              <text class='rt red'>￥{{item.total_sale_value}}</text>
+            </view>
+          </view> -->
+          <view class='orderInfo'>
+            <view class='orderDetail'>
+              <view class='text'>下单时间：{{item.timestamp}}</view>
+              <view class='btnArea'>
+                <navigator class='receiveBtn' data-orderno='{{item.channel_sheetno}}' url="{{'/pages/pick/pick?oid='+item.oid}}">开始复验</navigator>
+              </view>
+              <view class='text'></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

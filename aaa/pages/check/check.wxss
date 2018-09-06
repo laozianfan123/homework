@@ -1,0 +1,226 @@
+.orderFilter{
+  position: fixed;
+  background: #fff;
+  z-index: 999;
+  width:100%;
+
+}
+
+.orderFilter .item_1{
+  width: 250rpx;
+  font-size: 32rpx;
+  text-align: center;
+  float: left;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 10rpx 0;
+}
+
+.orderFilter .item_1 .name{
+  position: relative;
+  display: inline-block;
+}
+
+.orderFilter .item_1 .active{
+  position: relative;
+  display: inline-block;
+  color: #00f;
+}
+
+.orderFilter .item_1 .number{
+  position: absolute;
+  display: block;
+  right: -32rpx;
+  top: -5rpx;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background: #f00;
+  color: #fff;
+  border-radius: 100%;
+  font-size: 22rpx;
+  text-align: center;
+}
+
+.orderList{
+  overflow: hidden;
+
+}
+
+.orderList .item{
+  width: 700rpx;
+  overflow: hidden;
+  margin: 25rpx 25rpx 20rpx 25rpx;
+  box-sizing: border-box;
+  border:1rpx solid rgb(241,241,241);
+  font-size: 30rpx;
+}
+
+.orderList .item .tt{
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 60rpx;
+  padding: 20rpx ;
+  background: #F0F3F9;
+  border-bottom:1rpx solid rgb(241,241,241);
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderList .item .tt view:nth-of-type(1){
+  font-size: 28rpx;
+}
+
+.item .tt view:nth-of-type(2){
+  color: #1d8ffa;
+  display: flex;
+  align-items: center;
+}
+
+.item .tt view:nth-of-type(2) image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.orderList .item .ctn .buyerInfo{
+  height: 150rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid rgb(241,241,241);
+  padding: 0 20rpx;
+}
+
+.orderList .item .ctn .buyerInfo view{
+  line-height: 74rpx;
+}
+
+.orderList .item .ctn .buyerInfo view text{
+  color: #000;
+  font-weight: bolder;
+}
+
+.orderList .item .ctn .goodsInfo{
+  padding: 0 10rpx;
+}
+
+
+.orderList .item .ctn .goodsInfo .count .total{
+  height: 79rpx;
+  line-height: 79rpx;
+  padding-left:30rpx;
+  font-weight: bold;
+}
+
+.orderList .item .ctn .goodsInfo .count .goodsList{
+  overflow: hidden;
+}
+
+.orderList .item .ctn .goodsInfo .count .goodsList .goodsItem{
+  min-height: 100rpx;
+  padding:0 10rpx 0 60rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderList .item .ctn .goodsInfo .count .goodsList .goodsItem .goodsName{
+  width: 270rpx;
+}
+
+.orderList .item .ctn .goodsInfo .count .goodsList .goodsItem .goodsCount{
+  width: 150rpx;
+}
+
+
+.orderList .item .ctn .goodsInfo .count .otherPay{
+  border-top: 1px solid rgb(241,241,241);
+
+}
+
+.orderList .item .ctn .goodsInfo .count .otherPay .text{
+  line-height: 60rpx;
+  height: 60rpx;
+  padding-left:30rpx;
+  /* font-weight: bold; */
+  color: #999;
+}
+
+.orderList .item .ctn .goodsInfo .count .otherPay .ohterList{
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 10rpx 0 60rpx;
+}
+
+.orderList .item .ctn .goodsInfo .count .otherPay .ohterList .lt{
+  float: left;
+}
+
+.orderList .item .ctn .goodsInfo .count .otherPay .ohterList .rt{
+  float: right;
+}
+
+.orderList .item .ctn .payInfo{
+  padding: 0 20rpx 30rpx 70rpx;
+  overflow: hidden;
+  border-bottom: 1rpx solid  rgb(241,241,241);
+}
+
+.orderList .item .ctn .payInfo .payItem{
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.orderList .item .ctn .payInfo .payItem .lt{
+  float: left;
+}
+
+.orderList .item .ctn .payInfo .payItem .rt{
+  float: right;
+}
+
+.orderList .item .ctn .payInfo .payItem .red{
+  color: #f00;
+}
+
+.orderList .item .ctn .orderInfo{
+  margin:0 20rpx;
+  overflow: hidden;
+}
+
+.orderList .item .ctn .orderInfo .orderDetail{
+  float: left;
+  width:100%;
+
+}
+
+.orderList .item .ctn .orderInfo .orderDetail .text{
+  line-height: 60rpx;
+}
+
+.orderList .item .ctn .orderInfo .orderDetail .red{
+  color: #f00;
+}
+
+
+.orderList .item .ctn .orderInfo .orderDetail .btnArea{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top:30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderList .item .ctn .orderInfo .orderDetail .btnArea .receiveBtn{
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 1px solid rgb(241,241,241);
+  border-radius: 14rpx;
+  text-align: center;
+  flex: 1;
+  background: #666;
+  color: #fff; 
+}

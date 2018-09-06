@@ -1,0 +1,354 @@
+
+<view style='height: 100%' >
+
+<!-- 膜 -->
+     <view wx:if='{{filmShow}}' style='height:100%;width:100%;position:fixed;background:rgba(96,96,96,0.5);z-index:1200' catchtouchmove='scl'>
+       <view  style='height:400rpx;width:100%;background:#99FFFF;position:fixed;top:50%;margin-top:-200rpx'>
+         <view class='cNum'>修改拣货数量</view>
+        <input type='number' style='background:#fff;width:500rpx;margin-left:-250rpx;height:70rpx;position:fixed;left:50%;top:50%;margin-top:-35rpx' confirm-hold="true" ></input>
+        <view class='cBtn'>
+           <view>确定</view>
+            <view catchtap='cancleFilm'>取消</view>
+        </view>
+       </view>
+      </view>
+  <view style='height: 80rpx;'>
+    <view class='orderFilter'>
+      <block wx:for='{{filterList}}' wx:key='{{index}}'>
+        <view data-index='{{index}}' class='item_1' catchtap='changeFilter'>
+          <text class='{{item.checked?"name active":"name"}}'>{{item.name}}<text class='number' wx:if="{{item.num > 0}}">{{item.num}}</text></text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <scroll-view class='orderList' wx:if="{{orderList.length>0}}">
+    <block wx:for='{{orderList}}' wx:key='{{index}}'>
+      <view class='item'>
+        <view class='tt' data-index='{{index}}' catchtap='pullList'>
+          <view data-judge='false' catchtap='tink'>
+            <text style='font-weight: 700;margin-right: 15rpx;font-size: 40rpx;' >{{index+1}}</text>单号：{{item.channel_sheetno}}</view>
+          <view class='logo'></view>
+        </view>
+        <view class='ctn' wx:if="{{achJdg[index]}}" >
+
+          <!-- <view class='buyerInfo'>
+            <view>
+              <text>{{item.buyer.nick}}  {{item.buyer.tel}}</text>
+            </view>
+            <view>{{item.buyer.address}}</view>
+          </view> -->
+
+          <view class='goodsInfo'>
+            <view class='count'>
+              <view class='total'>{{item.detail.length}}件商品</view>
+              <view class='goodsList'>
+                <block wx:for='{{item.detail}}' wx:for-item="goodsItem" wx:key='{{index}}'>
+                  <view class='goodsItem'>
+                    <view class='goodsName'>{{goodsItem.item_name}}</view>
+                    <view class='goodsCount'>x{{goodsItem.sale_qty}}</view>
+                    <view class='goodsTotalPrice'>￥{{goodsItem.transaction_value}}</view>
+                  </view>
+                </block>
+              </view>
+              <!-- <view class='otherPay'>
+                <view class='text'>其他</view>
+                <view class='ohterList'>
+                  <view class='lt'>配送费</view>
+                  <view class='rt'>￥{{item.logistics_value}}</view>
+                </view>
+              </view> -->
+            </view>
+            
+          </view>
+         
+          <!-- <view class='payInfo'>
+            <view class='payItem'>
+              <text class='lt'>顾客支付</text>
+              <text class='rt'>已支付 ￥{{item.total_item_value}}</text>
+            </view>
+            <view class='payItem'>
+              <text class='lt'>本单预计收入</text>
+              <text class='rt red'>￥{{item.total_sale_value}}</text>
+            </view>
+          </view> -->
+          <view class='orderInfo'>
+            <view class='orderDetail'>
+
+              <view class='text'>下单时间：{{item.timestamp}}</view>
+              <view class='text'>耗时：4:56:03</view>
+              <view class='text'>拣货完成时间：2018年9月5日04:55:33</view>
+              <view class='btnArea'>
+
+                <view class='receiveBtn' data-orderno='{{item.channel_sheetno}}' wx:if="{{item.order_status.sorting == '2'}}" style='background: #666'>已拣货</view>
+                <navigator class='receiveBtn' data-orderno='{{item.channel_sheetno}}' url="{{'/pages/pick/pick?oid='+item.oid}}" wx:if="{{item.order_status.sorting == '1'}}">继续拣货</navigator>
+            
+              </view>
+              <view class='text'></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <scroll-view wx:elif='{{nuo==0}}' class='orderList'>
+
+    <view>
+      <view class='item' wx:if='{{deList}}'>
+        <view class='tt'>
+          <view>
+            <text style='font-weight: 700;margin-right: 15rpx;font-size: 40rpx;postion:relative'>1</text>单号：CS10000000004
+             <checkbox-group bindchange='selectList' class='selBox'>
+                <checkbox checked='{{xuan}}' class='rbtn' style='position:absolute;right:0;top:10rpx'></checkbox>
+              </checkbox-group>
+              <view class='tipb'> <view class='' >库存总量：x6</view>
+                <view >SKU数：x2</view></view>
+             
+            </view>
+          <view class='logo'></view>
+
+        </view>
+
+        <view class='ctn' wx:if='{{waitShow}}'>
+
+
+
+          <view class='goodsInfo'>
+            <view class='count' style='position:relative'>
+              <view class='total'>1件商品</view>
+             
+              <view class='goodsList'>
+
+                <view class='goodsItem'>
+                  <view class='goodsName'>可口可乐</view>
+                  <view class='goodsCount'>x3</view>
+                  <view class='goodsTotalPrice'>￥10.00</view>
+                </view>
+                 <view class='goodsItem'>
+              
+                </view>
+
+              </view>
+            </view>
+          </view>
+          <view class='orderInfo'>
+            <view class='orderDetail'>
+              <view class='text'>下单时间：2018-08-24 10:55:24</view>
+              <view class='btnArea'>
+                <navigator class='receiveBtn' data-orderno='CS10000000004' url="{{'/pages/pick/pick?oid='+1603306206003202283}}">开始拣货</navigator>
+              </view>
+              <view class='text'></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  
+
+    <view class='bott'>
+
+    </view>
+    <view class='bot'>
+      <view class='all-select' bindtap='bindSelectAll'>
+        一键全选
+      </view>
+      <!-- <view class='all-select' bindtap='deleteList'>
+        删除
+      </view> -->
+      <view class='all-select'  data-index='1' catchtap='changeFilter'>
+        开始拣货
+      </view>
+    </view>
+  </scroll-view>
+  <view wx:elif='{{nuo==1}}' >
+  
+    <view class='checktop'>
+
+      <view class='checkorder' style='color:{{orderColor}}' catchtap='selectOrder'>
+        订单
+      </view>
+      <view class='checkshop' style='color:{{shopColor}}' catchtap='selectShop'>
+        商品
+      </view>
+    </view>
+    <!-- 订单 -->
+    <scroll-view class='orderList' wx:if='{{changeList}}'>
+      <view>
+     
+        <view class='item' >
+          <view class='tt'>
+            <view>
+              <text style='font-weight: 700;margin-right: 15rpx;font-size: 40rpx;'>3</text>单号：CS10000000004</view>
+            <view class='logo'></view>
+          </view>
+          <view class='ctn'>
+            <view class='goodsInfo'>
+              <view class='count' style='position:relative'>
+                <view class='total'>1件商品</view>
+                <view class='goodsList'>
+                  <view class='goodsItem'>
+                    <view class='goodsName'>牛奶</view>
+                    <view class='goodsCount'>总计：x3</view>
+                    <view class='goodsTotalPrice'>已拣货：1 <text class="iconfont icon-xiugai" catchtap='trick'></text></view>
+                  </view>
+                  <view class='goodsItem'>
+                    <view class='goodsName'>乐事</view>
+                    <view class='goodsCount'>总计：x2</view>
+                    <view class='goodsTotalPrice'>已拣货：1 <text class="iconfont icon-xiugai"></text></view>
+                  </view>
+
+                </view>
+              </view>
+            </view>
+            <view class='orderInfo'>
+              <view class='orderDetail'>
+                <view class='text'>下单时间：2018-08-24 10:55:24</view>
+                <view class='btnArea'>
+                  <navigator class='receiveBtn1' data-orderno='{{item.channel_sheetno}}' bindtap='saoMa'>继续拣货</navigator>
+                   <navigator class='receiveBtn2' data-orderno='{{item.channel_sheetno}}' url="{{'/pages/pick/pick?oid='+item.oid}}">完成拣货</navigator>
+                </view>
+                <view class='text'></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+
+      <view>
+        <view class='item'>
+          <view class='tt'>
+            <view>
+              <text style='font-weight: 700;margin-right: 15rpx;font-size: 40rpx;'>3</text>单号：CS10000000004</view>
+            <view class='logo'></view>
+
+          </view>
+
+          <view class='ctn'>
+
+
+
+            <view class='goodsInfo'>
+              <view class='count' style='position:relative'>
+                <view class='total'>1件商品</view>
+
+                <view class='goodsList'>
+
+                  <view class='goodsItem'>
+                    <view class='goodsName'>牛奶</view>
+                    <view class='goodsCount'>总计：x5</view>
+                    <view class='goodsTotalPrice'>已拣货：2  <text class="iconfont icon-xiugai"></text></view>
+                  </view>
+                  <view class='goodsItem'>
+                    <view class='goodsName'>七喜</view>
+                    <view class='goodsCount'>总计：x8</view>
+                    <view class='goodsTotalPrice'>已拣货：5 <text class="iconfont icon-xiugai"></text></view>
+                  </view>
+
+                </view>
+              </view>
+            </view>
+            <view class='orderInfo'>
+              <view class='orderDetail'>
+                <view class='text'>下单时间：2018-08-24 10:55:24</view>
+                <view class='btnArea'>
+                  <navigator class='receiveBtn1' data-orderno='{{item.channel_sheetno}}' bindtap='saoMa'>继续拣货</navigator>
+                     <navigator class='receiveBtn2' data-orderno='{{item.channel_sheetno}}' url="{{'/pages/pick/pick?oid='+item.oid}}">完成拣货</navigator>
+                </view>
+                <view class='text'></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+
+
+
+    <!-- 商品 -->
+    <scroll-view class='orderList' wx:if='{{changeList !=true}}'>
+
+    <view>
+    <view>
+    <image src='../../images/muilk.jpg' style='width:650rpx;height:700rpx;position:fixed;z-index:100;left:50%;margin-left:-325rpx;top:50%;margin-top:-350rpx;' catchtap='photoHidden' wx:if='{{picShow}}'>
+    </image>
+  
+    </view>
+  <view class='item'>
+  <view class='tot'>
+ <text style='font-size:35rpx;font-weight:bolder' bindtap='maxPhoto'>商品:牛奶</text>
+ <text >
+ 总计：x8 
+ </text>
+ <text>
+ 已拣货：3
+
+ </text>
+ <image class='receiveBtn3' src='../../images/muilk.jpg' catchtap='photoShow'></image>
+
+  <navigator class='receiveBtn1 has' data-orderno='{{item.channel_sheetno}}' bindtap='saoMa'>继续拣货</navigator>
+ 
+  
+  </view>
+
+    
+    </view>
+    <view class='item'>
+  <view class='tot'>
+
+ <text style='font-size:35rpx;font-weight:bolder'>商品:七喜</text>
+ <text >
+ 总计：x8 
+ </text>
+ <text>
+ 已拣货：5
+ </text>
+
+    <image class='receiveBtn3' src='../../images/qixi.jpg'></image>
+  <navigator class='receiveBtn1 has' data-orderno='{{item.channel_sheetno}}' bindtap='saoMa'>继续拣货</navigator>
+
+  
+  </view>
+
+    
+    </view>
+    <view class='item'>
+  <view class='tot'>
+ <text style='font-size:35rpx;font-weight:bolder'>商品:可乐</text>
+ <text >
+ 总计：x2
+ </text>
+ <text>
+ 已拣货：1
+ </text>
+<image class='receiveBtn3' src='../../images/kele.jpg'></image>
+  <navigator class='receiveBtn1 has' data-orderno='{{item.channel_sheetno}}' bindtap='saoMa' >继续拣货</navigator>
+  
+ 
+  
+  </view>
+
+    
+    </view>
+  <view class='shopBott'>
+  </view>
+  </view>
+  
+    
+    <view class='shopBot'>
+     <navigator class='receiveBtn3 has' data-orderno='{{item.channel_sheetno}}'  >完成拣货</navigator>
+    </view>
+    
+    </scroll-view>
+
+
+
+  </view>
+
+
+
+
+</view>

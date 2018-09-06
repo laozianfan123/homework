@@ -1,0 +1,31 @@
+<!--pages/pick.wxml-->
+<view class='contain'>
+  <!-- <view class='cus'>客户：
+    <text>{{orderDetail.order.buyer.nick}}</text>
+  </view> -->
+  <view wx:for="{{orderDetail.detail}}" wx:key="{{index}}" style='margin-bottom: 20rpx;height: auto;background:#fff;'>
+    <view class='goodsInfo'>
+      <view class='wrapper'>
+        <view class='name'>品名：
+          <text>{{item.item_name}}</text>
+        </view>
+        <view class='barcode'>条码：
+          <text>{{item.barcode}}</text>
+        </view>
+        <view>未拣：
+          <text>{{item.unsort_qty}}</text>
+        </view>
+      </view>
+      <image src='{{item.master_image_url}}'></image>
+    </view>
+    <view class='sorted'>
+          <view>已拣：<text style='color: red;font-weight: bold;'>{{item.sorted_qty}}</text></view>
+          <view wx:if="{{item.unsort_qty==0}}">已拣完</view>
+        </view>
+  </view>
+  <button bindtap='allSorted'>拣货完毕</button>
+</view>
+<view class='sys'>
+  <view>等待扫描....</view>
+  <image src='/images/sys.png' bindtap='scanCode'></image>
+</view>
